@@ -1,0 +1,29 @@
+# Environment
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Database
+*.sql.bak
+
+# IDE
+.vscode/
+.idea/
+
+# React
+node_modules/
+frontend/build/
+
+# OS
+.DS_Store
+Thumbs.db

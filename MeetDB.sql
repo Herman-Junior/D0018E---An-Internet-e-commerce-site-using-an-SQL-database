@@ -1,3 +1,4 @@
+-- Active: 1770040573308@@localhost@3306
 CREATE DATABASE MeetDatabase;
 USE MeetDatabase;
 
