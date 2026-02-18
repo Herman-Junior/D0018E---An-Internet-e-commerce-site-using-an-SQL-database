@@ -8,7 +8,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password_hash = db.Column(db.String(255), nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)
     team = db.Column(db.Boolean, default=False)  # True = wholesale/business buyer
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -73,7 +73,7 @@ class Category(db.Model):
     products = db.relationship("Product", backref="category", lazy=True)
 
 
-class Product(db.Model):
+class Products(db.Model):
     __tablename__ = "PRODUCTS"
 
     product_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -104,16 +104,16 @@ class Inventory(db.Model):
     unit_type = db.Column(db.String(50))
 
 
-class Order(db.Model):
+class Orders(db.Model):
     __tablename__ = "ORDERS"
 
     order_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey("USERS.user_id"), nullable=False)
     method = db.Column(db.String(50))
+    price = db.column(db.Integer, db.ForeignKey("Products.price")), 
     payment_details = db.Column(db.String(255))
 
-    items = db.relationship("OrderItem", backref="order", lazy=True)
-
+    items = db.relationship("OrderItem", backref="orders", lazy=True)
 
 class Cart(db.Model):
     __tablename__ = "CART"
@@ -124,7 +124,7 @@ class Cart(db.Model):
     quantity = db.Column(db.Float)
 
 
-class OrderItem(db.Model):
+class OrderItems(db.Model):
     __tablename__ = "ORDER_ITEMS"
 
     order_item_id = db.Column(db.Integer, primary_key=True, autoincrement=True)

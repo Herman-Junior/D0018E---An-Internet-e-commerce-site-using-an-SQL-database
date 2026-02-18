@@ -6,7 +6,7 @@ USE MeetDatabase;
 CREATE TABLE USERS (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
-    password
+    password_hash VARCHAR(200) NOT NULL,
     email VARCHAR(100) UNIQUE,
     team BOOLEAN
 );
@@ -50,8 +50,10 @@ CREATE TABLE ORDERS (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     method VARCHAR(50),
+    price INT,
     payment_details VARCHAR(255),
-    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id),
+    FOREIGN KEY (price) REFERENCES PRODUCTS(price)
 );
 
 -- CART TABLE
