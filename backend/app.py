@@ -15,7 +15,6 @@ def create_app():
     cors.init_app(app)
     JWTManager(app)
 
-    # Import all models here so SQLAlchemy registers them before any route runs
     with app.app_context():
         from models import User
         db.create_all()
@@ -24,3 +23,7 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
 
     return app
+
+if __name__ == "__main__":
+    app = create_app()
+    app.run(debug=True, port=5000)
